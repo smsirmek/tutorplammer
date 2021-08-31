@@ -77,7 +77,7 @@ class _onfirstpageState extends State<onfirstpage> {
                     onTap: openRegister,
                     child: Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 90),
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 90),
                       decoration:
                           BoxDecoration(color: Colors.white, boxShadow: [
                         BoxShadow(

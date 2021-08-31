@@ -90,7 +90,7 @@ class _registerState extends State<register> {
                       borderRadius: BorderRadius.all(Radius.circular(7)),
                       color: Color(0xfff96060)),
                   child: Text(
-                    "Log In",
+                    "Sing up",
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   
