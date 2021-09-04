@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorplanner/screen/HomePage.dart';
+import 'package:tutorplanner/NavBar.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
 
 class Register extends StatelessWidget {
@@ -105,10 +105,10 @@ class _registerState extends State<register> {
 
   openOnfirstpage() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Onfirstpage()));
+        context, MaterialPageRoute(builder: (context) => onfirstpage()));
   }
    openHomePage() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => homePage()));
+        context, MaterialPageRoute(builder: (context) => nav()));
   }
 }

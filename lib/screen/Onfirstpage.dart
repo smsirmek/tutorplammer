@@ -46,8 +46,7 @@ class _onfirstpageState extends State<onfirstpage> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('asset/image/path1.png'),
-                      fit: BoxFit.fill)
-                      ),
+                      fit: BoxFit.fill)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -56,14 +55,9 @@ class _onfirstpageState extends State<onfirstpage> {
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 20, horizontal: 100),
-                      decoration:
-                          BoxDecoration(color: Colors.white, boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            offset: Offset(0, 9),
-                            blurRadius: 20,
-                            spreadRadius: 3)
-                      ]),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(7)),
+                          color: Colors.white),
                       child: Text(
                         "Login",
                         style: TextStyle(fontSize: 16),
@@ -78,14 +72,9 @@ class _onfirstpageState extends State<onfirstpage> {
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 20, horizontal: 90),
-                      decoration:
-                          BoxDecoration(color: Colors.white, boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            offset: Offset(0, 9),
-                            blurRadius: 20,
-                            spreadRadius: 3)
-                      ]),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(7)),
+                          color: Colors.white),
                       child: Text(
                         "Register",
                         style: TextStyle(fontSize: 16),

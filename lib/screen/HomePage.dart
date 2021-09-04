@@ -22,7 +22,6 @@ class homePage extends StatefulWidget {
 class _homePageState extends State<homePage> {
   String filterType = "today";
   DateTime today = new DateTime.now();
-  String taskPop = "close";
 
   @override
   Widget build(BuildContext context) {
@@ -109,18 +108,13 @@ class _homePageState extends State<homePage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),backgroundColor: Colors.red,
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
-
-  // openTaskPop() {
-  //   taskPop = "open";
-  //   setState(() {});
-  // }
-
-  // closeTaskPop() {
-  //   taskPop = "close";
-  //   setState(() {});
-  // }
 
   changeFilter(String filter) {
     filterType = filter;
