@@ -72,7 +72,7 @@ class _ProfilePageState extends State<profilePage> {
                 fontWeight: FontWeight.bold
             ) ,),
           SizedBox(height: 25.5),
-          Row(
+          Column(
             children: <Widget>[
               Icon(
                 Icons.email,
