@@ -170,7 +170,7 @@ class _registerState extends State<register> {
 
         formKey.currentState!.reset();
         Fluttertoast.showToast(
-          msg: "สร้างบัญชีผู้ใช้เรียบร้อยแล้ว !",
+          msg: "สร้างบัญชีผู้ใช้เรียบร้อยแล้ว !!",
           gravity: ToastGravity.CENTER
           );
       
