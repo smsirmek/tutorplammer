@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tutorplanner/NavBar.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
 
@@ -19,6 +20,7 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,8 @@ class _registerState extends State<register> {
       ),
       body: Container(
         padding: EdgeInsets.all(20),
+        child: Form(
+          key: formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -67,16 +71,23 @@ class _registerState extends State<register> {
             SizedBox(
               height: 20,
             ),
-            TextField(
+            TextFormField(
+              validator: MultiValidator([
+                RequiredValidator(errorText: "กรุณากรอกอีเมล"),
+                EmailValidator(errorText: "รูปแบบไม่ถูกต้อง")
+              ]),
               decoration: InputDecoration(hintText: "e-mail"),
               style: TextStyle(fontSize: 20),
+              keyboardType: TextInputType.emailAddress,
             ),
             SizedBox(
               height: 20,
             ),
-            TextField(
+            TextFormField(
+              validator: RequiredValidator(errorText: "กรุณากรอกพาสเวิร์ด"),
               decoration: InputDecoration(hintText: "password "),
               style: TextStyle(fontSize: 20),
+              obscureText: true,
             ),
             SizedBox(
               height: 30,
@@ -93,12 +104,12 @@ class _registerState extends State<register> {
                     "Sing up",
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
-                  
                 ),
               ),
             )
           ],
         ),
+      ),
       ),
     );
   }

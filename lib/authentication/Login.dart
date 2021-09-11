@@ -35,6 +35,7 @@ class _loginState extends State<login> {
       ),
       body: Container(
         padding: EdgeInsets.all(20),
+        child: Form(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -52,16 +53,18 @@ class _loginState extends State<login> {
             SizedBox(
               height: 20,
             ),
-            TextField(
+            TextFormField(
               decoration: InputDecoration(hintText: "e-mail"),
               style: TextStyle(fontSize: 20),
+              keyboardType: TextInputType.emailAddress,
             ),
             SizedBox(
-              height: 40,
+              height: 20,
             ),
-            TextField(
-              decoration: InputDecoration(hintText: " your password "),
+            TextFormField(
+              decoration: InputDecoration(hintText: "password "),
               style: TextStyle(fontSize: 20),
+              obscureText: true,
             ),
             SizedBox(
               height: 30,
@@ -84,6 +87,7 @@ class _loginState extends State<login> {
           ],
         ),
       ),
+    ),
     );
   }
 
