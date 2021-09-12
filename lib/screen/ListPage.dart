@@ -31,7 +31,7 @@ class _ListPageState extends State<listPage> {
       body: Center(
         child: Text(
           'List screen',
-          style: TextStyle(fontSize: 40),
+          style: TextStyle(fontSize: 30),
         ),
       ),
     );
