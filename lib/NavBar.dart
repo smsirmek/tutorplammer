@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tutorplanner/screen/ListPage.dart';
 import '../screen/HomePage.dart';
 import '../screen/MapPage.dart';
 import '../screen/ProfilePage.dart';
 import '../screen/TransactionPage.dart';
-
 
 class Nav extends StatelessWidget {
   @override
@@ -15,17 +15,17 @@ class Nav extends StatelessWidget {
     );
   }
 }
-class nav extends StatefulWidget {
 
+class nav extends StatefulWidget {
   @override
   _NavState createState() => _NavState();
 }
 
 class _NavState extends State<nav> {
-
-    int currentIndex = 0 ;
+  int currentIndex = 0;
   final screens = [
     HomePage(),
+    ListPage(),
     MapPage(),
     TransactionPage(),
     ProfilePage()
@@ -34,13 +34,17 @@ class _NavState extends State<nav> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentIndex],
-       bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
+              backgroundColor: Colors.grey),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box),
+              label: 'List',
               backgroundColor: Colors.grey),
           BottomNavigationBarItem(
               icon: Icon(Icons.map),
