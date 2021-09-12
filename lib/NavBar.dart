@@ -44,7 +44,7 @@ class _NavState extends State<nav> {
               backgroundColor: Colors.grey),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_box),
-              label: 'List',
+              label: 'Student List',
               backgroundColor: Colors.grey),
           BottomNavigationBarItem(
               icon: Icon(Icons.map),
