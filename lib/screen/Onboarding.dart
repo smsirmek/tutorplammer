@@ -150,7 +150,7 @@ class _onboardingState extends State<onboarding> {
   }
 
   openOnfirstpage() {
-    Navigator.push(
+    Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => Onfirstpage()));
   }
 }

@@ -23,6 +23,7 @@ class nav extends StatefulWidget {
 
 class _NavState extends State<nav> {
 
+
     int currentIndex = 0 ;
   final screens = [
     HomePage(),

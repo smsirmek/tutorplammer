@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:tutorplanner/NavBar.dart';
 import 'package:tutorplanner/model/profile.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
 
@@ -156,37 +155,38 @@ class _registerState extends State<register> {
   }
 
   openOnfirstpage() {
-    Navigator.push(
+    Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => onfirstpage()));
   }
 
   void registerAccount() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      try{
-       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: profile.email,
-        password: profile.password);
+      try {
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: profile.email, password: profile.password)
+            .then((value) {
+          formKey.currentState!.reset();
+          Fluttertoast.showToast(
+              msg: "สร้างบัญชีผู้ใช้เรียบร้อยแล้ว !!",
+              gravity: ToastGravity.CENTER);
 
-        formKey.currentState!.reset();
-        Fluttertoast.showToast(
-          msg: "สร้างบัญชีผู้ใช้เรียบร้อยแล้ว !!",
-          gravity: ToastGravity.CENTER
-          );
-      
-      Navigator.pushReplacement(context,
-      MaterialPageRoute(builder:(context)=> onfirstpage() 
-      )
-      );
-
-
-      }on FirebaseAuthException catch(e){
-        // print(e.code);
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => onfirstpage()));
+        });
+      } on FirebaseAuthException catch (e) {
+        print(e.code);
+        var message;
+        if (e.code == 'email-already-in-use') {
+          message = "อีเมลนี้ถูกใช้แล้ว";
+        } else if (e.code == 'weak-password') {
+          message = "รหัสผ่านต้องมีความยาว 6 ตัวขึ้นไป";
+        } else {
+          message = e.message;
+        }
         // print(e.message);
-        Fluttertoast.showToast(
-          msg: e.code,
-          gravity: ToastGravity.CENTER
-          );
+        Fluttertoast.showToast(msg: message, gravity: ToastGravity.CENTER);
       }
     }
   }

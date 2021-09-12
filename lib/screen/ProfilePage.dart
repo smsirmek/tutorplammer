@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tutorplanner/screen/Onfirstpage.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -17,6 +19,9 @@ class profilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<profilePage> {
+
+  final auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +37,7 @@ class _ProfilePageState extends State<profilePage> {
         children: <Widget>[
           Center(
             child: CircleAvatar(
-             backgroundImage: AssetImage('asset/image/Logodaftb.png'),
+             backgroundImage: AssetImage('asset/image/profile1.png'),
               radius: 50.0,
             ),
           ),
@@ -40,37 +45,6 @@ class _ProfilePageState extends State<profilePage> {
             height: 50.0,
             color: Colors.black,
           ),
-          Text(
-            'Firstname',
-            style: TextStyle(
-            color: Colors.black,
-            letterSpacing: 2.0,
-          ) ,),
-          SizedBox(height: 9.5),
-          Text(
-            'peter',
-              style: TextStyle(
-              color: Colors.red,
-              letterSpacing: 2.0,
-              fontSize: 30.0,
-              fontWeight: FontWeight.bold
-            ) ,),
-          SizedBox(height: 25.5),
-          Text(
-            'Lastname',
-            style: TextStyle(
-              color: Colors.black,
-              letterSpacing: 2.0,
-            ) ,),
-          SizedBox(height: 9.5),
-          Text(
-            ' parker ',
-            style: TextStyle(
-                color: Colors.red,
-                letterSpacing: 2.0,
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold
-            ) ,),
           SizedBox(height: 25.5),
           Column(
             children: <Widget>[
@@ -80,7 +54,7 @@ class _ProfilePageState extends State<profilePage> {
               ),
               SizedBox(width: 7.0),
               Text(
-                  'Paker@gmail.com',
+                  auth.currentUser!.email.toString(),
               style: TextStyle(
                 color: Colors.blueAccent,
                 fontSize: 20.0,
@@ -91,7 +65,7 @@ class _ProfilePageState extends State<profilePage> {
               height: 30,
             ),
             InkWell(
-              onTap: null,
+              onTap: logoutAccount,
               child: Center(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 130, vertical: 20),
@@ -111,5 +85,14 @@ class _ProfilePageState extends State<profilePage> {
        ),
       ),
     );
+  }
+
+  logoutAccount() async {
+   await auth.signOut().then((value){
+      
+      Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => onfirstpage()));
+
+    });
   }
 }

@@ -91,11 +91,11 @@ class _onfirstpageState extends State<onfirstpage> {
   }
 
   openLogin() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
   }
 
   openRegister() {
-    Navigator.push(
+    Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => Register()));
   }
 }
