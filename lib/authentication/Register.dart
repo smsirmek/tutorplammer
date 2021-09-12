@@ -6,6 +6,8 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tutorplanner/model/profile.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
 
+import '../wrapper.dart';
+
 class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -173,7 +175,7 @@ class _registerState extends State<register> {
               gravity: ToastGravity.CENTER);
 
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => onfirstpage()));
+              context, MaterialPageRoute(builder: (context) => Wrapper()));
         });
       } on FirebaseAuthException catch (e) {
         print(e.code);

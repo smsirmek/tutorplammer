@@ -3,9 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:tutorplanner/NavBar.dart';
 import 'package:tutorplanner/model/profile.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
+import 'package:tutorplanner/wrapper.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -171,7 +171,7 @@ class _loginState extends State<login> {
             formKey.currentState!.reset();
 
             Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => nav()));
+              context, MaterialPageRoute(builder: (context) => Wrapper()));
           });
 
       } on FirebaseAuthException catch (e) {

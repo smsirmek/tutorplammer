@@ -88,7 +88,6 @@ class _ProfilePageState extends State<profilePage> {
   }
 
   logoutAccount() async {
-    
    await auth.signOut().then((value){
       
       Navigator.pushReplacement(
