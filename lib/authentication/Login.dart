@@ -2,10 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:provider/provider.dart';
 import 'package:tutorplanner/model/profile.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
-import 'package:tutorplanner/wrapper.dart';
+import 'package:tutorplanner/services/auth_service.dart';
+import 'package:tutorplanner/services/google_auth.dart';
+import '../wrapper.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -23,13 +27,22 @@ class login extends StatefulWidget {
   _loginState createState() => _loginState();
 }
 
+// ignore: camel_case_types
 class _loginState extends State<login> {
- final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   Profile profile = Profile(
     email: '',
     password: '',
   );
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
+   final authService = FirebaseAuth.instance;
+
+  Future<User?> signInWithGoogle()async{
+    await googleAuth().signInWithGoogle().then((value) =>
+    Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Wrapper()))
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +141,7 @@ class _loginState extends State<login> {
                         child: Center(
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 130, vertical: 20),
+                                horizontal: 150, vertical: 20),
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7)),
@@ -140,6 +153,32 @@ class _loginState extends State<login> {
                             ),
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
+                            onPrimary: Colors.white,
+                            minimumSize: Size(double.infinity, 60)),
+                        icon: FaIcon(
+                          FontAwesomeIcons.google,
+                          color: Colors.white,
+                        ),
+                        label: Text('Sign in with Google'),
+                        onPressed: signInWithGoogle
+                        // onPressed: () {
+                        //   final provider = Provider.of<GoogleSignInProvider>(
+                        //       context,
+                        //       listen: false);
+                        //   provider.googleLogin().then((value) =>
+                        //       Navigator.pushReplacement(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //               builder: (context) => Wrapper())));
+                        // },
                       )
                     ],
                   ),
@@ -164,18 +203,16 @@ class _loginState extends State<login> {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: profile.email,
-          password: profile.password
-          ).then((value) {
-            formKey.currentState!.reset();
+        await authService
+            .signInWithEmailAndPassword(
+                email: profile.email, password: profile.password)
+            .then((value) {
+          formKey.currentState!.reset();
 
-            Navigator.pushReplacement(
+          Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Wrapper()));
-          });
-
+        });
       } on FirebaseAuthException catch (e) {
-
         // print(e.message);
         Fluttertoast.showToast(msg: e.code, gravity: ToastGravity.CENTER);
       }

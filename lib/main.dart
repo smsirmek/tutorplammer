@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:tutorplanner/services/auth_service.dart';
+import 'package:tutorplanner/services/google_auth.dart';
 import 'screen/Onboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,10 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider<AuthService>(
           create: (_) => AuthService(),
-        )
+        ),
+        // ChangeNotifierProvider<GoogleSignInProvider>(
+        //   create: (context) => GoogleSignInProvider(),
+        // )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

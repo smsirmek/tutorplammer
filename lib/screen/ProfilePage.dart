@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
+import 'package:tutorplanner/services/auth_service.dart';
+import 'package:tutorplanner/services/google_auth.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -12,6 +14,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
+// ignore: camel_case_types
 class profilePage extends StatefulWidget {
 
   @override
@@ -20,7 +23,7 @@ class profilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<profilePage> {
 
-  final auth = FirebaseAuth.instance;
+  final authService = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,7 @@ class _ProfilePageState extends State<profilePage> {
               ),
               SizedBox(width: 7.0),
               Text(
-                  auth.currentUser!.email.toString(),
+                  authService.currentUser!.email.toString(),
               style: TextStyle(
                 color: Colors.blueAccent,
                 fontSize: 20.0,
@@ -88,7 +91,7 @@ class _ProfilePageState extends State<profilePage> {
   }
 
   logoutAccount() async {
-   await auth.signOut().then((value){
+   await googleAuth().signOut().then((value){
       
       Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => onfirstpage()));

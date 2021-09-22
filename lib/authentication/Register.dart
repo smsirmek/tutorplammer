@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tutorplanner/model/profile.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
-
 import '../wrapper.dart';
 
 class Register extends StatelessWidget {
@@ -25,12 +24,15 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
+  
   final formKey = GlobalKey<FormState>();
   Profile profile = Profile(
     email: '',
     password: '',
   );
+  
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
+  final authService = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {

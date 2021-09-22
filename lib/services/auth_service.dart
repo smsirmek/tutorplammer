@@ -36,7 +36,50 @@ class AuthService {
     return _userFromFirebase(credential.user);
   }
 
+//  Future<User?> signInWithGoogle() async{
+//     final googleSignIn = GoogleSignIn();
+//     final googleUser = await googleSignIn.signIn();
+//     if(googleUser != null){
+//       final googleAuth = await googleUser.authentication;
+//       if(googleAuth.idToken != null){
+//         final userCredential = await _firebaseAuth.signInWithCredential(
+//           auth.GoogleAuthProvider.credential(
+//             idToken: googleAuth.idToken,
+//             accessToken: googleAuth.accessToken,)
+//           );
+//           return userCredential.user;
+//       }
+//     }else{
+//       throw auth.FirebaseAuthException(
+//         message: "Sign in aborded user",
+//         code:  "ERROR"
+//       );
+//     }
+
+//   }
+
   Future<void> signOut() async {
-    return await _firebaseAuth.signOut();
+   return
+    await _firebaseAuth.signOut();
+    
+     
   }
+
+// Future<UserCredential> signInWithGoogle() async {
+//   // Trigger the authentication flow
+//   final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
+//   // Obtain the auth details from the request
+//   final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+//   // Create a new credential
+//   final credential = GoogleAuthProvider.credential(
+//     accessToken: googleAuth.accessToken,
+//     idToken: googleAuth.idToken,
+//   );
+
+//   // Once signed in, return the UserCredential
+//   return await auth.FirebaseAuth.instance.signInWithCredential(credential);
+
+//   }
 }
