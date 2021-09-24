@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tutorplanner/transactionpage/Cardtotal.dart';
+import 'package:tutorplanner/transactionpage/Incometransaction.dart';
 
 class TransactionPage extends StatelessWidget {
   @override
@@ -11,19 +13,19 @@ class TransactionPage extends StatelessWidget {
     );
   }
 }
-class transactionPage extends StatefulWidget {
 
+class transactionPage extends StatefulWidget {
   @override
   _TransactionPageState createState() => _TransactionPageState();
 }
 
 class _TransactionPageState extends State<transactionPage> {
-
   String filterType = "bill";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Column(
@@ -95,80 +97,59 @@ class _TransactionPageState extends State<transactionPage> {
                   ],
                 ),
               ),
-
               (filterType == "bill")
-                  ? SingleChildScrollView(
-                      child: Center(
-                          child: ListView(
-                            
-                            children: [
-                            SizedBox(height: 20,),
-                            // CupertinoSearchTextField(
-                              
-                            // ),
-                            DataTable(
-                             columns: [
-                               DataColumn(
-                                 label: Text("date")),
-                               DataColumn(
-                                 label: Text("Name")),
-                               DataColumn(
-                                 label: Text("Pay")),
-                               DataColumn(
-                                 label: Text("Status"))
-                             ],
-                             rows: [
-                               DataRow(
-                                 cells: [
-                                   DataCell(
-                                     Text("Test")
-                                   ),
-                                   DataCell(
-                                     Text("Test")
-                                   ),
-                                   DataCell(
-                                     Text("Test")
-                                   ),
-                                   DataCell(
-                                     Text("Test")
-                                   ),
-                                 ]),
-                                
-                             ]),
-
-                          ],),
-                        
-                      ),
-
-                  )
+                  ? Column(
+                      children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CupertinoSearchTextField(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Center(
+                          child: DataTable(columns: [
+                            DataColumn(label: Text("Date")),
+                            DataColumn(label: Text("Name")),
+                            DataColumn(label: Text("Pay")),
+                            DataColumn(label: Text("Status"))
+                          ], rows: [
+                            DataRow(cells: [
+                              DataCell(Text("Test")),
+                              DataCell(Text("Test")),
+                              DataCell(Text("Test")),
+                              DataCell(Text("Test")),
+                            ]),
+                          ]),
+                        ),
+                      ],
+                    )
                   : Container(),
-
               (filterType == "income")
-                  ? SingleChildScrollView(
-                  
-                    child: Container(
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        
                         children: [
-                          SizedBox(height: 10,),
-                          DataTable(
-                           columns: [
-                             DataColumn(
-                               label: Text("date"))
-                           ],
-                           rows: [
-                             DataRow(
-                               cells: [
-                                 DataCell(
-                                   Text("Test")
-                                 )
-                               ])
-                           ]),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          totalCard(
+                            balance: ' 1000',
+                          ),
+                          Container(
+                            child: Center(
+                              child: Column(children: [
+                                SizedBox(height: 10,),
+                                MyTransaction(transactionName: 'Teaching ', money: '500')
+                              ],
+                              ),
+
+                            ),
+                          )
+                          
                         ],
                       ),
-                    ),
-                  )
-
+                    )
                   : Container(),
             ],
           ),
@@ -176,6 +157,7 @@ class _TransactionPageState extends State<transactionPage> {
       ),
     );
   }
+
   changeFilter(String filter) {
     filterType = filter;
     setState(() {});
