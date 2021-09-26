@@ -24,6 +24,7 @@ class profilePage extends StatefulWidget {
 class _ProfilePageState extends State<profilePage> {
 
   final authService = FirebaseAuth.instance;
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -48,25 +49,23 @@ class _ProfilePageState extends State<profilePage> {
             height: 50.0,
             color: Colors.black,
           ),
-          SizedBox(height: 25.5),
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.email,
-                color: Colors.blueAccent,
-              ),
-              SizedBox(width: 7.0),
-              Text(
-                  authService.currentUser!.email.toString(),
-              style: TextStyle(
-                color: Colors.blueAccent,
-                fontSize: 20.0,
-                letterSpacing: 2.0,
-              ),
-              ),
-              SizedBox(
-              height: 30,
+          SizedBox(height: 10),
+          
+          Center(
+            child: Column(
+              children: [
+                Text('Name: '+user.email.toString(),
+                style: TextStyle(fontSize: 18),),
+
+                SizedBox(height: 10,),
+
+                Text('email: '+user.displayName.toString(),
+                style: TextStyle(fontSize: 18),),
+              ],
             ),
+          ),
+
+          SizedBox(height: 40,),
             InkWell(
               onTap: logoutAccount,
               child: Center(
@@ -82,8 +81,6 @@ class _ProfilePageState extends State<profilePage> {
                 ),
               ),
             )
-            ],
-          )
         ],
        ),
       ),

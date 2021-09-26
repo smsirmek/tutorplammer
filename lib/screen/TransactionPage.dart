@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tutorplanner/transactionpage/BillPage.dart';
 import 'package:tutorplanner/transactionpage/Cardtotal.dart';
 import 'package:tutorplanner/transactionpage/Incometransaction.dart';
 
@@ -117,7 +120,17 @@ class _TransactionPageState extends State<transactionPage> {
                             DataRow(cells: [
                               DataCell(Text("Test")),
                               DataCell(Text("Test")),
-                              DataCell(Text("Test")),
+                              DataCell(
+                                  Container(
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.rectangle,
+                                          color: Colors.grey[500]),
+                                      child: Text("Bill")), onTap: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => billPage()));
+                              }),
                               DataCell(Text("Test")),
                             ]),
                           ]),
@@ -138,15 +151,18 @@ class _TransactionPageState extends State<transactionPage> {
                           ),
                           Container(
                             child: Center(
-                              child: Column(children: [
-                                SizedBox(height: 10,),
-                                MyTransaction(transactionName: 'Teaching ', money: '500')
-                              ],
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  MyTransaction(
+                                      transactionName: 'Teaching ',
+                                      money: '500')
+                                ],
                               ),
-
                             ),
                           )
-                          
                         ],
                       ),
                     )
