@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "652640256798",
+    "project_id": "tutorplanner-23d21",
+    "storage_bucket": "tutorplanner-23d21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652640256798:android:62a3cb1bdba99e4a003f0f",
+        "android_client_info": {
+          "package_name": "com.example.tutorplanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652640256798-omatso1u4rr44m8cqrujph26r0i88t6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA78FeK3LQmxjf_jwqCAjDOQ4Wt3B7uL7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652640256798-omatso1u4rr44m8cqrujph26r0i88t6i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -85,7 +85,7 @@ class _ListPageState extends State<listPage> {
         backgroundColor: Colors.red,
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => dataappPage()));
+              context, MaterialPageRoute(builder: (context) => dataaddPage()));
         },
       ),
     );

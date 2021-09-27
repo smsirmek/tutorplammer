@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tutorplanner/model/student.dart';
+import 'package:tutorplanner/screen/ListPage.dart';
 
 class DataAppPage extends StatelessWidget {
   @override
@@ -8,19 +11,23 @@ class DataAppPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'avenir'),
-      home: dataappPage(),
+      home: dataaddPage(),
     );
   }
 }
 
-class dataappPage extends StatefulWidget {
+class dataaddPage extends StatefulWidget {
   @override
   _DataAppPageState createState() => _DataAppPageState();
 }
 
-class _DataAppPageState extends State<dataappPage> {
+class _DataAppPageState extends State<dataaddPage> {
   final formKey = GlobalKey<FormState>();
   Studentdata myStudent = Studentdata();
+  // for set
+  final Future<FirebaseApp> firebase = Firebase.initializeApp();
+  CollectionReference studentdata =
+      FirebaseFirestore.instance.collection("studentdata");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +56,15 @@ class _DataAppPageState extends State<dataappPage> {
                         height: 20,
                       ),
                       TextFormField(
-                        validator:
-                            RequiredValidator(errorText: "Invalid information"),
+                        validator: (sname) {
+                          if (sname!.isEmpty ||
+                              !RegExp(r'^[a-z A-Z]+$').hasMatch(sname)) {
+                            return "Enter correct name";
+                          } else {
+                            return null;
+                          }
+                        },
+                        // RequiredValidator(errorText: "Invalid information"),
                         decoration: InputDecoration(hintText: "Student name"),
                         style: TextStyle(fontSize: 20),
                         onSaved: (String? sname) {
@@ -61,8 +75,14 @@ class _DataAppPageState extends State<dataappPage> {
                         height: 20,
                       ),
                       TextFormField(
-                        validator:
-                            RequiredValidator(errorText: "Invalid information"),
+                        validator: (lname) {
+                          if (lname!.isEmpty ||
+                              !RegExp(r'^[a-z A-Z]+$').hasMatch(lname)) {
+                            return "Enter correct name";
+                          } else {
+                            return null;
+                          }
+                        },
                         decoration: InputDecoration(hintText: "Parent's name"),
                         style: TextStyle(fontSize: 20),
                         onSaved: (String? pname) {
@@ -73,8 +93,15 @@ class _DataAppPageState extends State<dataappPage> {
                         height: 20,
                       ),
                       TextFormField(
-                        validator:
-                            RequiredValidator(errorText: "Invalid information"),
+                        validator: (scont) {
+                          if (scont!.isEmpty ||
+                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                  .hasMatch(scont)) {
+                            return "Enter correct phone number";
+                          } else {
+                            return null;
+                          }
+                        },
                         keyboardType: TextInputType.phone,
                         maxLength: 10,
                         decoration:
@@ -85,8 +112,15 @@ class _DataAppPageState extends State<dataappPage> {
                         },
                       ),
                       TextFormField(
-                        validator:
-                            RequiredValidator(errorText: "Invalid information"),
+                        validator: (pcont) {
+                          if (pcont!.isEmpty ||
+                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                  .hasMatch(pcont)) {
+                            return "Enter correct phone number";
+                          } else {
+                            return null;
+                          }
+                        },
                         keyboardType: TextInputType.phone,
                         maxLength: 10,
                         decoration:
@@ -97,8 +131,13 @@ class _DataAppPageState extends State<dataappPage> {
                         },
                       ),
                       TextFormField(
-                        validator:
-                            RequiredValidator(errorText: "Invalid information"),
+                        validator: (address) {
+                          if (address!.isEmpty) {
+                            return "Enter correct name";
+                          } else {
+                            return null;
+                          }
+                        },
                         decoration: InputDecoration(hintText: "Address"),
                         style: TextStyle(fontSize: 20),
                         onSaved: (String? address) {
@@ -114,9 +153,21 @@ class _DataAppPageState extends State<dataappPage> {
                             "Add",
                             style: TextStyle(fontSize: 20),
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
+                              await studentdata.add({
+                                "sname": myStudent.sname,
+                                "pname": myStudent.pname,
+                                "scont": myStudent.scont,
+                                "pcont": myStudent.pcont,
+                                "address": myStudent.address
+                              });
+                              formKey.currentState!.reset();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => listPage()));
                             }
                           },
                         ),
