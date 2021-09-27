@@ -37,8 +37,10 @@ class _onboardingState extends State<onboarding> {
                 child: PageView(
                   controller: _pageController,
                   children: [
-                    onBoardPage("onboard1", "Welcome to TutorPlanner","แอพสำหรับการบริหารจัดการเวลาในการวางแผน"),
-                    onBoardPage("onboard3", "Planner your Work ","วางแผนเกี่ยวกับตารางงานของคุณ"),
+                    onBoardPage("onboard1", "Welcome to TutorPlanner",
+                        "แอพสำหรับการบริหารจัดการเวลาในการวางแผน"),
+                    onBoardPage("onboard3", "Planner your Work ",
+                        "วางแผนเกี่ยวกับตารางงานของคุณ"),
                   ],
                   onPageChanged: (value) => {setCurrentPage(value)},
                 ),
@@ -144,9 +146,7 @@ class _onboardingState extends State<onboarding> {
 
   setCurrentPage(int value) {
     currentPage = value;
-     setState(() {
-
-    });
+    setState(() {});
   }
 
   openOnfirstpage() {
