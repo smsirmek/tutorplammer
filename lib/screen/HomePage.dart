@@ -121,7 +121,8 @@ class _homePageState extends State<homePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),backgroundColor: Colors.red,
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
