@@ -187,6 +187,7 @@ class _registerState extends State<register> {
         } else if (e.code == 'weak-password') {
           message = "รหัสผ่านต้องมีความยาว 6 ตัวขึ้นไป";
         } else {
+          
           message = e.message;
         }
         // print(e.message);
