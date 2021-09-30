@@ -6,6 +6,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tutorplanner/model/profile.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
 import '../wrapper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Register extends StatelessWidget {
   @override
@@ -24,13 +25,12 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
-  
   final formKey = GlobalKey<FormState>();
   Profile profile = Profile(
     email: '',
     password: '',
   );
-  
+
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
   final authService = FirebaseAuth.instance;
 
@@ -170,7 +170,20 @@ class _registerState extends State<register> {
         await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
                 email: profile.email, password: profile.password)
-            .then((value) {
+            .then((value) async {
+          var collection = FirebaseFirestore.instance.collection(
+              'user'); // <-- ชื่อ collection  พอมันสร้าง user ใน firebase auth เเล้วต้องมาสร้าง collection ของ user ต่อ เพื่อ เก็บ data เช่น รายได้ อะไรงี้
+          await collection
+              .doc(value.user!.uid
+                  .toString()) // <-- Document ID // ใช้ uid เป็น ชื่อ Document ID
+              .set({
+                // ข้อมูลเเล้วเเต่จะใส่เลย
+                'name': 'plaithep มันหล่อเท่', // อันนี้เเล้วเเต่นะ
+                'totalIncome': 0,
+                'age': 20
+              }) // <-- Your data
+              .then((_) => print('Added'))
+              .catchError((error) => print('Add failed: $error'));
           formKey.currentState!.reset();
           Fluttertoast.showToast(
               msg: "สร้างบัญชีผู้ใช้เรียบร้อยแล้ว !!",
@@ -187,7 +200,6 @@ class _registerState extends State<register> {
         } else if (e.code == 'weak-password') {
           message = "รหัสผ่านต้องมีความยาว 6 ตัวขึ้นไป";
         } else {
-          
           message = e.message;
         }
         // print(e.message);
