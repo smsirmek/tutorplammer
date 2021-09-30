@@ -30,42 +30,11 @@ class googleAuth {
     }
    }
 
-  Future<void> signOut() async{
+  Future<User?> signOut() async{
+    await FirebaseAuth.instance.signOut();
     final googleSignIn = GoogleSignIn();
     await googleSignIn.disconnect();
-    await FirebaseAuth.instance.signOut();
+    
+
   }
 }
-
-// class GoogleSignInProvider extends ChangeNotifier{
-
-// final googleSignIn = GoogleSignIn();
-
-//       GoogleSignInAccount? _user;
-
-//       GoogleSignInAccount get user =>_user!;
-
-// Future googleLogin() async {
-//     final googleUser = await googleSignIn.signIn();
-//     if(googleUser == null) return ;
-//       _user = googleUser ;
-
-//     final googleAuth = await googleUser.authentication;
-
-//     final credential = GoogleAuthProvider.credential(
-//       idToken: googleAuth.idToken,
-//       accessToken: googleAuth.accessToken,
-//     );
-
-//     await FirebaseAuth.instance.signInWithCredential(credential);
-
-//  notifyListeners();
-// }
-
-//   Future<void> signOut() async{
-//     final googleSignIn = GoogleSignIn();
-//     await googleSignIn.disconnect();
-//     FirebaseAuth.instance.signOut();
-//   }
-
-// }

@@ -35,7 +35,7 @@ class _loginState extends State<login> {
     password: '',
   );
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
-   final authService = FirebaseAuth.instance;
+  final authService = FirebaseAuth.instance;
 
   Future<User?> signInWithGoogle()async{
     await googleAuth().signInWithGoogle().then((value) =>

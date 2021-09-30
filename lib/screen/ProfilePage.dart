@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
-import 'package:tutorplanner/services/auth_service.dart';
 import 'package:tutorplanner/services/google_auth.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -42,6 +41,7 @@ class _ProfilePageState extends State<profilePage> {
           Center(
             child: CircleAvatar(
              backgroundImage: AssetImage('asset/image/profile1.png'),
+            //  backgroundImage: NetworkImage(user.photoURL!),
               radius: 50.0,
             ),
           ),
@@ -54,12 +54,12 @@ class _ProfilePageState extends State<profilePage> {
           Center(
             child: Column(
               children: [
-                Text('Name: '+user.email.toString(),
+                Text('Name: '+user.displayName.toString(),
                 style: TextStyle(fontSize: 18),),
 
                 SizedBox(height: 10,),
 
-                Text('email: '+user.displayName.toString(),
+                Text('email: '+user.email.toString(),
                 style: TextStyle(fontSize: 18),),
               ],
             ),
@@ -87,7 +87,7 @@ class _ProfilePageState extends State<profilePage> {
     );
   }
 
-  logoutAccount() async {
+  Future<User?> logoutAccount() async {
    await googleAuth().signOut().then((value){
       
       Navigator.pushReplacement(

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorplanner/transactionpage/BillPage.dart';
@@ -112,14 +110,14 @@ class _TransactionPageState extends State<transactionPage> {
                         ),
                         Center(
                           child: DataTable(columns: [
-                            DataColumn(label: Text("Date")),
                             DataColumn(label: Text("Name")),
                             DataColumn(label: Text("Pay")),
+                            DataColumn(label: Text("Total")),
                             DataColumn(label: Text("Status"))
                           ], rows: [
                             DataRow(cells: [
                               DataCell(Text("Test")),
-                              DataCell(Text("Test")),
+                              
                               DataCell(
                                   Container(
                                       decoration: BoxDecoration(
@@ -131,7 +129,19 @@ class _TransactionPageState extends State<transactionPage> {
                                     MaterialPageRoute(
                                         builder: (context) => billPage()));
                               }),
-                              DataCell(Text("Test")),
+                              DataCell(Text("200")),
+                              DataCell(ElevatedButton(
+                              style:ElevatedButton.styleFrom(
+                              primary: Colors.red,
+                              minimumSize: Size(double.infinity,30)
+                              ) ,
+                              child: Text('ยืนยัน'),
+                              onPressed: (){
+
+                              }
+
+                              ,)
+                              ),
                             ]),
                           ]),
                         ),
