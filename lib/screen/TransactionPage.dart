@@ -111,35 +111,24 @@ class _TransactionPageState extends State<transactionPage> {
                         Center(
                           child: DataTable(columns: [
                             DataColumn(label: Text("Name")),
-                            DataColumn(label: Text("Pay")),
-                            DataColumn(label: Text("Total")),
-                            DataColumn(label: Text("Status"))
+                            DataColumn(label: Text("GrandTotal")),
+                            DataColumn(label: Text("Pay"))
                           ], rows: [
                             DataRow(cells: [
-                              DataCell(Text("Test")),
-                              
-                              DataCell(
-                                  Container(
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.rectangle,
-                                          color: Colors.grey[500]),
-                                      child: Text("Bill")), onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => billPage()));
-                              }),
+                              DataCell(Text("Arut")),
                               DataCell(Text("200")),
                               DataCell(ElevatedButton(
                               style:ElevatedButton.styleFrom(
                               primary: Colors.red,
                               minimumSize: Size(double.infinity,30)
                               ) ,
-                              child: Text('ยืนยัน'),
+                              child: Text('Bill'),
                               onPressed: (){
-
+                                Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => billPage()));
                               }
-
                               ,)
                               ),
                             ]),

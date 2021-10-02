@@ -39,14 +39,20 @@ class billPage extends StatelessWidget {
                 child: DataTable(columns: [
                   DataColumn(label: Text("Date")),
                   DataColumn(label: Text("Name")),
-                  DataColumn(label: Text("Hour")),
-                  DataColumn(label: Text("total"))
+                  DataColumn(label: Text("total")),
+                  
+      
                 ], rows: [
-                  DataRow(cells: [
+                  DataRow(
+                    selected: true,
+                    onSelectChanged: (b){
+
+                    },
+                    cells: [
                     DataCell(Text("08/23/2021")),
                     DataCell(Text("Test")),
-                    DataCell(Text("2")),
-                    DataCell(Text("200")),
+                    DataCell(Text("100")),
+                    
                   ]),
                 ]),
               ),
