@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:provider/provider.dart';
 import 'package:tutorplanner/model/profile.dart';
 import 'package:tutorplanner/screen/Onfirstpage.dart';
-import 'package:tutorplanner/services/auth_service.dart';
 import 'package:tutorplanner/services/google_auth.dart';
 import '../wrapper.dart';
 

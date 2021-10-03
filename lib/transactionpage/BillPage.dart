@@ -52,8 +52,16 @@ class billPage extends StatelessWidget {
                     DataCell(Text("08/23/2021")),
                     DataCell(Text("Test")),
                     DataCell(Text("100")),
-                    
-                  ]),
+                     ]
+                 ),
+
+                 DataRow(
+                    cells: [
+                    DataCell(Text("08/23/2021")),
+                    DataCell(Text("Test2")),
+                    DataCell(Text("100")),
+                     ]
+                 ),
                 ]),
               ),
             ],
